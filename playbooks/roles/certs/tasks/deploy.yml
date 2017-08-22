@@ -73,6 +73,11 @@
     state: absent
   when: CERTS_GIT_IDENTITY != "none"
 
+- name: install libjpeg-dev
+  apt:
+    name: libjpeg-dev
+    state: present
+
 - name: Install python requirements
   pip:
     requirements: "{{ certs_requirements_file }}"
