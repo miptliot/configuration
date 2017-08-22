@@ -262,6 +262,34 @@
     - install
     - install:app-requirements
 
+# Dirty workaround for https://github.com/nengo/nengo/issues/508
+#
+- name: code sandbox | get a line for numpy
+  shell: >
+    egrep '^numpy(==[0-9.]+)?$' {{ sandbox_base_requirements }}
+  changed_when: false
+  failed_when: false
+  register: edxapp__v_numpy
+  become_user: "{{ edxapp_sandbox_user }}"
+  when: EDXAPP_PYTHON_SANDBOX
+  tags:
+    - edxapp-sandbox
+    - install
+    - install:app-requirements
+
+- name: code sandbox | install numpy
+  pip:
+    name: "{{ edxapp__v_numpy.stdout }}"
+    virtualenv: "{{ edxapp_sandbox_venv_dir }}"
+    state: present
+    extra_args: "-i {{ COMMON_PYPI_MIRROR_URL }} --exists-action w"
+  become_user: "{{ edxapp_sandbox_user }}"
+  when: EDXAPP_PYTHON_SANDBOX and edxapp__v_numpy.stdout != "" and edxapp__v_numpy.rc == 0
+  tags:
+    - edxapp-sandbox
+    - install
+    - install:app-requirements
+
 - name: code sandbox | Install base sandbox requirements and create sandbox virtualenv
   pip:
     requirements: "{{ sandbox_base_requirements }}"
