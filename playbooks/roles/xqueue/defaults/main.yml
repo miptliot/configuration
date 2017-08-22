@@ -143,7 +143,6 @@ xqueue_debian_pkgs:
   # misc
   - curl
   - ipython
-  - ntp
   # for shapely
   - libgeos-dev
   # Needed to be able to create the xqueue mysqldb.

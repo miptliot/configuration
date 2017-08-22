@@ -1183,7 +1183,6 @@ edxapp_debian_pkgs:
   - curl
   - ipython
   - nodejs
-  - ntp
   # matplotlib needs libfreetype6-dev
   - libfreetype6-dev
   # cffi needs libffi-dev

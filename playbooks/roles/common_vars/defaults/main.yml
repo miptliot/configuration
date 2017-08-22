@@ -108,7 +108,6 @@ common_redhat_pkgs:
   - unzip
   - acl
 common_debian_pkgs:
-  - ntp
   - acl
   - lynx-cur
   - logrotate
