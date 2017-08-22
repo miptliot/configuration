@@ -9,7 +9,7 @@ MAINTAINER edxops
 ENV LANG C.UTF-8
 
 ENV ANSIBLE_REPO="https://github.com/edx/ansible"
-ENV CONFIGURATION_REPO="https://github.com/edx/configuration.git"
+ENV CONFIGURATION_REPO="https://github.com/miptliot/edx-configuration.git"
 ENV CONFIGURATION_VERSION="master"
 
 ADD util/install/ansible-bootstrap.sh /tmp/ansible-bootstrap.sh
