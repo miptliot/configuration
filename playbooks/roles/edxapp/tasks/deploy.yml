@@ -86,6 +86,12 @@
     - install
     - install:code
 
+- name:
+  set_fact:
+    edxapp_requirements_with_github_urls: "{{ edxapp_requirements_with_github_urls + edxapp_requirements_extra }}"
+    edxapp_requirements_files: "{{ edxapp_requirements_files + edxapp_requirements_extra }}"
+  when: edxapp_requirements_extra is defined
+
 - name: Stat each requirements file with Github URLs to ensure it exists
   stat:
     path: "{{ item }}"
