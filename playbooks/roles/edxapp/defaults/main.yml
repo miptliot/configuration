@@ -913,6 +913,11 @@ generic_env_config:  &edxapp_generic_env
       <<: *default_generic_cache
       KEY_PREFIX: "{{ ansible_hostname|default('configuration') }}"
       LOCATION: "{{ EDXAPP_MEMCACHE }}"
+    # openassessment/fileupload/backends/filesystem.py
+    ora2_cache:
+      <<: *default_generic_cache
+      KEY_PREFIX:  'ora2'
+      LOCATION: "{{ EDXAPP_MEMCACHE }}"
     celery:
       <<: *default_generic_cache
       KEY_PREFIX:  'celery'
