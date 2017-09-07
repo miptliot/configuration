@@ -218,6 +218,7 @@
 
 - name: create nodeenv
   shell: "{{ edxapp_venv_dir }}/bin/nodeenv {{ edxapp_nodeenv_dir }} --node={{ edxapp_node_version }} --prebuilt --force"
+  become_user: "{{ edxapp_user }}"
   tags:
     - install
     - install:system-requirements
@@ -230,6 +231,7 @@
   args:
     creates: "{{ edxapp_app_dir }}/.npmrc"
   environment: "{{ edxapp_environment }}"
+  become_user: "{{ edxapp_user }}"
   tags:
     - install
     - install:app-requirements
